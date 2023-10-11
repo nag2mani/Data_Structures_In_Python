@@ -3,7 +3,6 @@ Author : Nagmani Kumar
 Date : sep 2023
 """
 
-
 # Node Class for Linked List
 class Node:
     def __init__(self, element):
