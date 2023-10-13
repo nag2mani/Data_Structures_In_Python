@@ -74,11 +74,11 @@ class Tree:
             return 1 + self.depth(self.parent(p))
 
     def _height1(self):
-        """Return the height of the tree"""
+        """Return the height of the tree. Its time complexity is N^2."""
         return max(self.depth(p) for p in self.positions() if self.is_leaf(p))
 
     def _height2(self, p):
-        """Return the height of the subtree rooted at position p"""
+        """Return the height of the subtree rooted at position p. Its time complexity is N."""
         if self.is_leaf(p):
             return 0
         else:
@@ -97,7 +97,7 @@ class Tree:
         if not self.is_empty():
             for p in self._subtree_preorder(self.root()):
                 yield p
-    
+
     #Helper method of preorder
     def _subtree_preorder(self, p):
         """Generate a preorder iteration of positions in subtree rooted at p"""
@@ -105,6 +105,12 @@ class Tree:
         for c in self.children(p):
             for other in self._subtree_preorder(c):
                 yield other
+
+    def preorder2(self, p):
+        yield p
+        for c in self.children(p):
+            for i in c:
+                yield i
 
     def postorder(self):
         """Generate a postorder iteration of positions in the tree"""
