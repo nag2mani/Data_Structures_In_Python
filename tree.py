@@ -106,10 +106,11 @@ class Tree:
             for other in self._subtree_preorder(c):
                 yield other
 
+    ## Preorder without helper and you can do on any node.
     def preorder2(self, p):
         yield p
         for c in self.children(p):
-            for i in c:
+            for i in self.preorder2(c):
                 yield i
 
     def postorder(self):
@@ -453,6 +454,10 @@ if __name__ == "__main__":
 
 print("Preorder Traversal of Tree :")
 for i in iter(T.preorder()):
+    print(i.element(), end=", ")
+
+print("\nPreorder2 Traversal of Tree :")
+for i in iter(T.preorder2(T.root())):
     print(i.element(), end=", ")
 
 print("\nInorder Traversal of Tree :")
