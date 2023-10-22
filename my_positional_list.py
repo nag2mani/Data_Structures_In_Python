@@ -54,7 +54,7 @@ class _DoublyLinkedBase:
         successor = node._next
         predecessor._next = successor
         successor._prev = predecessor
-        self.size -= 1
+        self._size -= 1
         element = node._element  # record deleted element.
         node._prev = node._next = node._element = None  # deprecate node.
         return element
@@ -126,7 +126,7 @@ class PositionalList(_DoublyLinkedBase):
     def before(self, p):
         """Return the Position just before Position p (or None if p is first)."""
         node = self._validate(p)
-        return self.make_position(node.prev)
+        return self._make_position(node._prev)
 
     def after(self, p):
         """Return the Position just after Position p (or None if p is last)."""

@@ -18,6 +18,10 @@ class PriorityQueueBase:
 
         def __lt__(self, other):
             return self._key < other._key  # compare items based on their keys
+        
+        def excess_element(self):
+        # my own method to excess the element
+            return (self._key, self._value)
 
     def is_empty(self):  # concrete method assuming abstract len
         """Return True if the priority queue is empty."""
@@ -50,20 +54,26 @@ class UnsortedPriorityQueue(PriorityQueueBase):
 
     def add(self, key, value):
         """Add a key-value pair."""
-        self._data.add_last(self.Item(key, value))
+        self._data.add_last(self._Item(key, value))
 
     def min(self):
         """Return but do not remove (k, v) tuple with the minimum key."""
         p = self.find_min()
         item = p.element()
-        return (item.key, item.value)
+        return (item._key, item._value)
 
     def remove_min(self):
         """Remove and return (k, v) tuple with the minimum key."""
         p = self.find_min()
         item = self._data.delete(p)
-        return (item.key, item.value)
+        return (item._key, item._value)
 
+    def __iter__(self):
+        """Generate a forward iteration of the elements of the list."""
+        cursor = self._data.first()
+        while cursor is not None:
+            yield cursor.element().excess_element()
+            cursor = self._data.after(cursor)
 
 
 class SortedPriorityQueue(PriorityQueueBase):
@@ -79,7 +89,7 @@ class SortedPriorityQueue(PriorityQueueBase):
 
     def add(self, key, value):
         """Add a key-value pair."""
-        newest = self.Item(key, value)  # Make a new item instance
+        newest = self._Item(key, value)  # Make a new item instance
         walk = self._data.last()  # Walk backward looking for a smaller key
         while walk is not None and newest < walk.element():
             walk = self._data.before(walk)
@@ -94,16 +104,49 @@ class SortedPriorityQueue(PriorityQueueBase):
             raise "Priority queue is empty."
         p = self._data.first()
         item = p.element()
-        return (item.key, item.value)
+        return (item._key, item._value)
 
     def remove_min(self):
         """Remove and return (k, v) tuple with the minimum key."""
         if self.is_empty():
             raise "Priority queue is empty."
         item = self._data.delete(self._data.first())
-        return (item.key, item.value)
+        return (item._key, item._value)
+
+    def __iter__(self):
+        """Generate a forward iteration of the elements of the list."""
+        cursor = self._data.first()
+        while cursor is not None:
+            yield cursor.element().excess_element()
+            cursor = self._data.after(cursor)
 
 
+if __name__ == "__main__":
+    Up = UnsortedPriorityQueue()
+    Up.add(10,"nagmani")
+    Up.add(100,"Datai")
+    Up.add(15,"Useni")
+    Up.add(7,"kkkk")
+    Up.add(13,"oujhb")
+    print(len(Up))
+    print(Up.min())
+    print(Up.remove_min())
 
 
+    for i in iter(Up):
+        print(i)
 
+
+    Sp = SortedPriorityQueue()
+    Sp.add(10,"nagmani")
+    Sp.add(100,"Datai")
+    Sp.add(15,"Useni")
+    Sp.add(7,"kkkk")
+    Sp.add(13,"oujhb")
+    print(len(Sp))
+    print(Sp.min())
+    print(Sp.remove_min())
+
+
+for i in iter(Sp):
+    print(i)
