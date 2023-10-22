@@ -45,7 +45,7 @@ class _DoublyLinkedBase:
         newest = self._Node(e, predecessor, successor)  # linked to neighbors.
         predecessor._next = newest
         successor._prev = newest
-        self.size += 1
+        self._size += 1
         return newest
 
     def _delete_node(self, node):
@@ -178,6 +178,29 @@ class PositionalList(_DoublyLinkedBase):
         old_value = original.element  # Temporarily store old element
         original._element = e  # Replace with new element
         return old_value  # Return the old element value
+
+
+
+if __name__ == "__main__":
+    P = PositionalList()
+    print(type(P))
+    P.add_first(20)
+    # P.add_last(21)
+    # P.add_before(P, "Nagmani")
+    # P.add_after("kumar")
+    print(P.first().element())
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
