@@ -94,7 +94,7 @@ class PositionalList(_DoublyLinkedBase):
 # ------------------------------- utility method -------------------------------
 
 
-    def validate(self, p):
+    def _validate(self, p):
         """Return position's node, or raise appropriate error if invalid."""
         if not isinstance(p, self.Position):
             raise TypeError("p must be proper Position type")
@@ -104,7 +104,7 @@ class PositionalList(_DoublyLinkedBase):
             raise ValueError("p is no longer valid")
         return p._node
 
-    def make_position(self, node):
+    def _make_position(self, node):
         """Return Position instance for the given node (or None if sentinel)."""
         if node is self._header or node is self._trailer:
             return None  # Boundary violation
@@ -125,7 +125,7 @@ class PositionalList(_DoublyLinkedBase):
 
     def before(self, p):
         """Return the Position just before Position p (or None if p is first)."""
-        node = self.validate(p)
+        node = self._validate(p)
         return self.make_position(node.prev)
 
     def after(self, p):
@@ -159,12 +159,12 @@ class PositionalList(_DoublyLinkedBase):
 
     def add_before(self, p, e):
         """Insert element e into the list before Position p and return a new Position."""
-        original = self.validate(p)
+        original = self._validate(p)
         return self._insert_between(e, original._prev, original)
 
     def add_after(self, p, e):
         """Insert element e into the list after Position p and return a new Position."""
-        original = self.validate(p)
+        original = self._validate(p)
         return self._insert_between(e, original, original._next)
 
     def delete(self, p):
@@ -174,8 +174,8 @@ class PositionalList(_DoublyLinkedBase):
 
     def replace(self, p, e):
         """Replace the element at Position p with e. Return the element formerly at Position p."""
-        original = self.validate(p)
-        old_value = original.element  # Temporarily store old element
+        original = self._validate(p)
+        old_value = original._element  # Temporarily store old element
         original._element = e  # Replace with new element
         return old_value  # Return the old element value
 
@@ -183,13 +183,16 @@ class PositionalList(_DoublyLinkedBase):
 
 if __name__ == "__main__":
     P = PositionalList()
-    print(type(P))
+    # print(type(P))
     P.add_first(20)
-    # P.add_last(21)
-    # P.add_before(P, "Nagmani")
-    # P.add_after("kumar")
-    print(P.first().element())
-
+    P.add_last(21)
+    # print(len(P))
+    P.add_after(P.last(), "kumar")
+    P.replace(P.last(), "Mahto")
+    P.add_before(P.last(), "Nagmani")
+    # print(P.first().element())
+    for i in iter(P):
+        print(i)
 
 
 
