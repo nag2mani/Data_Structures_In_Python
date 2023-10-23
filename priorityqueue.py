@@ -1,6 +1,6 @@
 """
 Author : Nagmani Kumar
-Date : sep 2023
+Date : oct 2023
 """
 
 from my_positional_list import PositionalList
@@ -148,5 +148,6 @@ if __name__ == "__main__":
     print(Sp.remove_min())
 
 
-for i in iter(Sp):
-    print(i)
+    for i in iter(Sp):
+        print(i)
+        
