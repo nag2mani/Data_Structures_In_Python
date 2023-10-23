@@ -83,10 +83,14 @@ class HeapPriorityQueue(PriorityQueueBase): # base class defines Item
 
 if __name__ == "__main__":
     H = HeapPriorityQueue()
-H.add(2, "j")
-H.add(8, "j8")
-H.add(1, "j1")
+    H.add(2, "j")
+    H.add(8, "j8")
+    H.add(1, "j1")
 
-print(len(H))
-print(H.remove_min())
+    print(len(H))
+    print(H.remove_min())
+    print(H.remove_min())
+    print(len(H))
+
+
 
