@@ -30,20 +30,7 @@ print(h.nsmallest(3, list3))
 
 
 #some more methods;
-
-# h.heapreplace
-# h.merge
+# h.heapreplace (first pop then push)
+# h.merge (mearge two sabtree)
 # h._heapify_max
-
-
-
-
-
-
-
-
-
-
-
-
 
