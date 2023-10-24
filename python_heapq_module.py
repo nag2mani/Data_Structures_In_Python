@@ -11,22 +11,22 @@ for i in list1:
     h.heappush(list3, i)
 h.heappush(list3, 8)
 print(list3)
-# h.heapify(list1)
-# h.heappush(list2, (5, "nag"))
+h.heapify(list1)
+h.heappush(list2, (5, "nag"))
 
 
-# print(h.heappop(list1))
-# print(h.heappop(list1))
-# print(h.heappop(list3))
-# print(h.heappop(list3))
+print(h.heappop(list1))
+print(h.heappop(list1))
+print(h.heappop(list3))
+print(h.heappop(list3))
 
 
-# h.heappushpop(list3, 87)
-# print(list3)
+h.heappushpop(list3, 87)
+print(list3)
 
 
-# print(h.nlargest(3, list3))
-# print(h.nsmallest(3, list3))
+print(h.nlargest(3, list3))
+print(h.nsmallest(3, list3))
 
 
 #some more methods;
