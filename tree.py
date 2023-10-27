@@ -460,6 +460,10 @@ print("\nPreorder2 Traversal of Tree :")
 for i in iter(T.preorder2(T.root())):
     print(i.element(), end=", ")
 
+# print("Postorder Traversal of Tree :")
+# for i in iter(T.postorder()):
+#     print(i.element(), end=", ")
+
 print("\nInorder Traversal of Tree :")
 for i in iter(T.inorder()):
     print(i.element(), end=", ")
