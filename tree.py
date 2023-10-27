@@ -466,3 +466,4 @@ for i in iter(T.inorder()):
 
 
 # Finished
+#Issue: _make_position and _validate should be function of class binary tree but in book and pdf diffrent implimentation is given, which is correct?
