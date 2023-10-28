@@ -3,7 +3,9 @@ def hash_code(s):
     h=0
     for c in s:
         h = (h<<5 & mask) | (h>>27)
+        print(h)
         h += ord(c)
+        print(h)
     return h
 
 print(hash_code('abc'))
