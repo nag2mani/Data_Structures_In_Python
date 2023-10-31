@@ -438,7 +438,7 @@ if __name__ == "__main__":
 
     # print("Length before attaching :", len(T))
     T.attach(root_position, T1, T2)
-    print("Length after attaching T1 and T2 with a unique root:", len(T))
+    print("Length of tree T after attaching T1 and T2 with a unique root:", len(T))
 
     # Final Tree Structure
     #          1000
