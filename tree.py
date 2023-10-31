@@ -490,24 +490,43 @@ def preorder_indent(T, p, d):
 # preorder_indent(T, T.root(), len(T))
 
 
-def preorder_level(T, p, d):
-    """Print preorder representation of subtree of T rooted at p at depth d"""
-    print(2*d*' ', str(p.element()))
+def preorder_level(T, p, d, path):
+    """Print labeled representation of subtree of T rooted at p at depth d"""
+    label = '.'.join(str(j+1) for j in path)
+    print(2*d*' ' + label, p.element())
+    path.append(0)
+
     for c in T.children(p):
-        preorder_level(T, c, d+1)
+        preorder_level(T, c, d+1, path)
+        path[-1] += 1
+    path.pop()
+
+preorder_level(T, T.root(), len(T), [])
 
 
+def parenthesize(T, p):
+    """Print parenthesized representation of subtree of T rooted at p."""
+    print(p.element(), end="")
+    if not T.is_leaf(p):
+        first_time = True
+        for c in T.children(p):
+            sep = " (" if first_time else ", "
+            print(sep, end="")
+            first_time = False
+            parenthesize(T, c)
+        print(")", end="")
 
-print()
-preorder_level(T, T.root(), len(T))
+parenthesize(T, T.root())
 
 
+def disk_space(T, p):
+    """Return total disk space for subtree of T rooted at p"""
+    subtotal = p.element().space()
+    for c in T.children(p):
+        subtotal += disk_space(T, c)
+    return subtotal
 
-
-
-
-
-
+print(disk_space(T, T.root()))
 
 # Finished
 #Issue: _make_position and _validate should be function of class binary tree but in book and pdf diffrent implimentation is given, which is correct?

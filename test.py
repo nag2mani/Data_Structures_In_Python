@@ -9,3 +9,7 @@ def hash_code(s):
     return h
 
 print(hash_code('abc'))
+
+
+print('.'.join(str(i) for i in range(5)))
+
