@@ -476,9 +476,30 @@ if __name__ == "__main__":
 
 
 
+#Application:
+
+for p in T.preorder():
+    print(p.element(), end= ", ")
+
+def preorder_indent(T, p, d):
+    """Print preorder representation of subtree of T rooted at p at depth d"""
+    print(2*d*' ', str(p.element()))
+    for c in T.children(p):
+        preorder_indent(T, c, d+1)
+
+# preorder_indent(T, T.root(), len(T))
+
+
+def preorder_level(T, p, d):
+    """Print preorder representation of subtree of T rooted at p at depth d"""
+    print(2*d*' ', str(p.element()))
+    for c in T.children(p):
+        preorder_level(T, c, d+1)
 
 
 
+print()
+preorder_level(T, T.root(), len(T))
 
 
 
