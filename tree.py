@@ -487,7 +487,8 @@ def preorder_indent(T, p, d):
     for c in T.children(p):
         preorder_indent(T, c, d+1)
 
-# preorder_indent(T, T.root(), len(T))
+print()
+preorder_indent(T, T.root(), 0)
 
 
 def preorder_level(T, p, d, path):
@@ -501,7 +502,7 @@ def preorder_level(T, p, d, path):
         path[-1] += 1
     path.pop()
 
-preorder_level(T, T.root(), len(T), [])
+# preorder_level(T, T.root(), len(T), [])
 
 
 def parenthesize(T, p):
@@ -516,7 +517,7 @@ def parenthesize(T, p):
             parenthesize(T, c)
         print(")", end="")
 
-parenthesize(T, T.root())
+# parenthesize(T, T.root())
 
 
 def disk_space(T, p):
@@ -526,7 +527,7 @@ def disk_space(T, p):
         subtotal += disk_space(T, c)
     return subtotal
 
-print(disk_space(T, T.root()))
+# print(disk_space(T, T.root()))
 
 # Finished
 #Issue: _make_position and _validate should be function of class binary tree but in book and pdf diffrent implimentation is given, which is correct?
