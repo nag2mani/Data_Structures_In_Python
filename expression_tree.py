@@ -71,8 +71,8 @@ def build_expression_tree(tokens):
             S.append(ExpressionTree(t))  # push a trivial tree storing the value
         elif t == ')':  # compose a new tree from three constituent parts
             right = S.pop()  # right subtree as per LIFO
-            op = S.pop()  # operator symbol
-            left = S.pop()  # left subtree
+            op = S.pop()  # operator symbol.
+            left = S.pop()  # left subtree.
             S.append(ExpressionTree(op, left, right))  # repush the tree
             # We ignore a left parenthesis
     return S.pop()
