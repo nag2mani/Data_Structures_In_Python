@@ -13,3 +13,8 @@ class StackByQueue:
     def pop(self):
         return heappop(self.heap)
 
+Stk = StackByQueue()
+Stk.push(23)
+Stk.push(34)
+Stk.push(20)
+
