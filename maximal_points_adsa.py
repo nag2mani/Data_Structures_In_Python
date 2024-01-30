@@ -1,13 +1,22 @@
-def maximal_points_left_to_right(points):
-    points.sort(key=lambda point: (-point[0], -point[1]))
-    comparisons = 0
-    maximal_points = [points[0]]
-    for i in range(1, len(points)):
-        comparisons += 1
-        if points[i][1] > maximal_points[-1][1]:
-            maximal_points.append(points[i])
+import copy
 
-    return maximal_points, comparisons
+def maximal_points_left_to_right(points):
+    global comparisons_count
+    comparisons_count = 0
+
+    points_sorted = sorted(points, key=lambda p: (p[0], p[1]))
+    maximal_points_list = [points_sorted[0]]
+
+    for point in points_sorted:
+        candidate_copy = copy.deepcopy(maximal_points_list)
+        for candidate_point in candidate_copy:
+            comparisons_count += 1
+            if candidate_point[1] <= point[1]:
+                maximal_points_list.remove(candidate_point)
+        maximal_points_list.append(point)
+
+    return maximal_points_list, comparisons_count
+
 
 
 
@@ -15,6 +24,7 @@ def maximal_points_right_to_left(points):
     points.sort(key=lambda point: (-point[0], -point[1]))
     maximal_points = [points[0]]
     comparisons = 0
+    
     for i in range(1, len(points)):
         if points[i][1] > maximal_points[-1][1]:
             maximal_points.append(points[i])
@@ -49,11 +59,11 @@ def main():
 
 
 Input_list = [
-    [1, 2], [3, 4], [5, 6], [7, 8], [9, 10],
-    [11, 12], [13, 14], [15, 16], [17, 18], [19, 20],
-    [21, 22], [23, 24], [25, 26], [27, 28], [29, 30],
-    [31, 32], [33, 34], [35, 36], [37, 38], [39, 40],
-    [41, 42], [43, 44]
+    [1, 2], [3, 4], [-5, 6], [7, 8], [2, 10],
+    [11, 12], [13, 14], [15, 16], [1, 18], [19, 20],
+    [1, 22], [-23, 24], [88, 26], [27, 28], [29, 30],
+    [31, -2], [33, 34], [35, 36], [37, 38], [-9, 40],
+    [41, 42], [43, 4]
 ]
 
 points = Input_list
